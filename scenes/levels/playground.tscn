@@ -7,10 +7,7 @@
 
 [node name="player" parent="." instance=ExtResource("1_eh4l7")]
 
-[node name="base_mob" parent="." instance=ExtResource("2_s0j65")]
-
-[node name="MobMovement" parent="base_mob" index="0" node_paths=PackedStringArray("target_ref")]
+[node name="base_mob" parent="." node_paths=PackedStringArray("target_ref") instance=ExtResource("2_s0j65")]
+position = Vector2(600, 168)
 speed = 80.0
-target_ref = NodePath("../../player")
-
-[editable path="base_mob"]
+target_ref = NodePath("../player")

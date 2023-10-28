@@ -1,4 +1,4 @@
-extends Node
+extends Area2D
 
 @export_category("Mob Config")
 @export var speed : float = 100
@@ -10,18 +10,17 @@ extends Node
 
 @export_category("Child Refs")
 @export var mob_movement_ref: MobMovement
+@export var target_ref: Node2D
 @export var health_ref: Health
 @export var damage_applyer_ref: DamageApplyer
-@export var collider_ref: Area2D
-
 
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	mob_movement_ref.speed = speed
+	mob_movement_ref.target_ref = target_ref
 	health_ref.health = health
-	collider_ref.area_entered.connect(_on_area2d_entered)
-
+	area_entered.connect(_on_area2d_entered)
 
 
 func _on_area2d_entered(other: Area2D):
