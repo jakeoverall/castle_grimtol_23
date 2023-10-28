@@ -1,6 +1,7 @@
-[gd_scene load_steps=3 format=3 uid="uid://ubol0eudhwft"]
+[gd_scene load_steps=4 format=3 uid="uid://ubol0eudhwft"]
 
 [ext_resource type="Script" path="res://scripts/player/character_movement.gd" id="1_6l11n"]
+[ext_resource type="Script" path="res://scripts/utils/health.gd" id="2_3d4no"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_3kcve"]
 radius = 8.0
@@ -16,3 +17,6 @@ shape = SubResource("CapsuleShape2D_3kcve")
 [node name="CharacterMovement" type="Node" parent="." node_paths=PackedStringArray("character_ref")]
 script = ExtResource("1_6l11n")
 character_ref = NodePath("..")
+
+[node name="Health" type="Node" parent="."]
+script = ExtResource("2_3d4no")

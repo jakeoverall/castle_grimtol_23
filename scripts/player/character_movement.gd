@@ -25,4 +25,6 @@ func _physics_process(delta):
 	if Input.is_action_pressed(character_left):
 		direction.x -= 1
 
+	direction = direction.normalized()
+
 	character_ref.position += direction * delta * speed
