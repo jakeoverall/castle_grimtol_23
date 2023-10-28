@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://ubol0eudhwft"]
+
+[ext_resource type="Script" path="res://scripts/player/character_movement.gd" id="1_6l11n"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_3kcve"]
+radius = 8.0
+height = 32.0
+
+[node name="player" type="Node2D"]
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CapsuleShape2D_3kcve")
+
+[node name="CharacterMovement" type="Node" parent="." node_paths=PackedStringArray("character_ref")]
+script = ExtResource("1_6l11n")
+character_ref = NodePath("..")
