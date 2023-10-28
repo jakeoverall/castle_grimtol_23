@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://cgdoc7fjybmpo"]
+
+[ext_resource type="PackedScene" uid="uid://ubol0eudhwft" path="res://scenes/player.tscn" id="1_eh4l7"]
+[ext_resource type="PackedScene" uid="uid://cedq72r0cfl3d" path="res://scenes/base_mob.tscn" id="2_s0j65"]
+
+[node name="playground" type="Node2D"]
+
+[node name="player" parent="." instance=ExtResource("1_eh4l7")]
+
+[node name="base_mob" parent="." node_paths=PackedStringArray("target_ref") instance=ExtResource("2_s0j65")]
+position = Vector2(600, 168)
+speed = 80.0
+target_ref = NodePath("../player")

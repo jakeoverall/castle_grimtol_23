@@ -1,3 +1,31 @@
-[gd_scene format=3 uid="uid://cedq72r0cfl3d"]
+[gd_scene load_steps=6 format=3 uid="uid://cedq72r0cfl3d"]
 
-[node name="base_mob" type="Node2D"]
+[ext_resource type="Script" path="res://scripts/mobs/mob_movement.gd" id="1_1k5dp"]
+[ext_resource type="Script" path="res://scripts/mobs/mob_base.gd" id="1_w2lff"]
+[ext_resource type="Script" path="res://scripts/utils/health.gd" id="2_5ejsu"]
+[ext_resource type="Script" path="res://scripts/utils/damage_applyer.gd" id="3_2pchs"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_vhvat"]
+radius = 8.0
+height = 32.0
+
+[node name="base_mob" type="Area2D" node_paths=PackedStringArray("mob_movement_ref", "health_ref", "damage_applyer_ref")]
+script = ExtResource("1_w2lff")
+mob_movement_ref = NodePath("MobMovement")
+health_ref = NodePath("Health")
+damage_applyer_ref = NodePath("DamageApplyer")
+
+[node name="MobMovement" type="Node" parent="." node_paths=PackedStringArray("mob_ref")]
+script = ExtResource("1_1k5dp")
+mob_ref = NodePath("..")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_vhvat")
+debug_color = Color(0.878431, 0.376471, 0.470588, 0.419608)
+
+[node name="Health" type="Node" parent="."]
+script = ExtResource("2_5ejsu")
+
+[node name="DamageApplyer" type="Node" parent="." node_paths=PackedStringArray("parent_ref")]
+script = ExtResource("3_2pchs")
+parent_ref = NodePath("")
