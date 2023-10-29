@@ -1,21 +1,65 @@
-[gd_scene load_steps=7 format=3 uid="uid://cedq72r0cfl3d"]
+[gd_scene load_steps=14 format=3 uid="uid://cedq72r0cfl3d"]
 
 [ext_resource type="Script" path="res://scripts/mobs/mob_movement.gd" id="1_1k5dp"]
 [ext_resource type="Script" path="res://scripts/mobs/mob_base.gd" id="1_w2lff"]
 [ext_resource type="Script" path="res://scripts/utils/health.gd" id="2_5ejsu"]
 [ext_resource type="Script" path="res://scripts/utils/damage_applyer.gd" id="3_2pchs"]
+[ext_resource type="Texture2D" uid="uid://oxertbr33klm" path="res://sprites/skeleton_sprite.png" id="5_ral60"]
+[ext_resource type="Texture2D" uid="uid://c2n88yrtcs1cr" path="res://sprites/coin.png" id="6_ap4aw"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_vhvat"]
 radius = 8.0
 height = 32.0
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_xnloo"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_7ao41"]
+atlas = ExtResource("5_ral60")
+region = Rect2(0, 0, 16, 32)
 
-[node name="base_mob" type="Area2D" node_paths=PackedStringArray("mob_movement_ref", "health_ref", "damage_applyer_ref") groups=["enemies"]]
+[sub_resource type="AtlasTexture" id="AtlasTexture_q0os8"]
+atlas = ExtResource("5_ral60")
+region = Rect2(16, 0, 16, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_xnloo"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7ao41")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_q0os8")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="Gradient" id="Gradient_nvpm7"]
+offsets = PackedFloat32Array(0.761905, 1)
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_78864"]
+gradient = SubResource("Gradient_nvpm7")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_ximo2"]
+particle_flag_disable_z = true
+spread = 180.0
+gravity = Vector3(0, 0, 0)
+initial_velocity_min = 15.8
+initial_velocity_max = 135.44
+angular_velocity_min = -182.03
+angular_velocity_max = 208.04
+orbit_velocity_min = 0.0
+orbit_velocity_max = 0.0
+scale_max = 1.2
+color_ramp = SubResource("GradientTexture1D_78864")
+
+[node name="base_mob" type="Area2D" node_paths=PackedStringArray("mob_movement_ref", "health_ref", "damage_applyer_ref", "death_particles_ref", "sprite_renderer_ref") groups=["enemies"]]
 script = ExtResource("1_w2lff")
 mob_movement_ref = NodePath("MobMovement")
 health_ref = NodePath("Health")
 damage_applyer_ref = NodePath("DamageApplyer")
+death_particles_ref = NodePath("DeathParticles")
+sprite_renderer_ref = NodePath("AnimatedSprite2D")
 
 [node name="MobMovement" type="Node" parent="." node_paths=PackedStringArray("mob_ref", "slowdown_timer")]
 script = ExtResource("1_1k5dp")
@@ -37,3 +81,11 @@ parent_ref = NodePath("")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_xnloo")
+frame_progress = 0.0334393
+
+[node name="DeathParticles" type="GPUParticles2D" parent="."]
+amount = 15
+process_material = SubResource("ParticleProcessMaterial_ximo2")
+texture = ExtResource("6_ap4aw")
+lifetime = 1.6
+explosiveness = 1.0
