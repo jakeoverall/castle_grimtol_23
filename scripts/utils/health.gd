@@ -15,4 +15,5 @@ func recieve_damage(from: Node, amount: float):
 	health -= amount
 	health_changed.emit(prev, health)
 	if health <= 0:
+		print('dead')
 		health_expired.emit(from)
