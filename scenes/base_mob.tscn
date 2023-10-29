@@ -4,8 +4,8 @@
 [ext_resource type="Script" path="res://scripts/mobs/mob_base.gd" id="1_w2lff"]
 [ext_resource type="Script" path="res://scripts/utils/health.gd" id="2_5ejsu"]
 [ext_resource type="Script" path="res://scripts/utils/damage_applyer.gd" id="3_2pchs"]
-[ext_resource type="Texture2D" uid="uid://pxdfyj26uwha" path="res://sprites/skeleton_sprite.png" id="5_ral60"]
-[ext_resource type="Texture2D" uid="uid://boilj8t56e67t" path="res://sprites/coin.png" id="6_ap4aw"]
+[ext_resource type="Texture2D" uid="uid://oxertbr33klm" path="res://sprites/skeleton_sprite.png" id="5_ral60"]
+[ext_resource type="Texture2D" uid="uid://c2n88yrtcs1cr" path="res://sprites/coin.png" id="6_ap4aw"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_vhvat"]
 radius = 8.0
