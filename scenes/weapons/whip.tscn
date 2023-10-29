@@ -1,0 +1,76 @@
+[gd_scene load_steps=11 format=3 uid="uid://b0ugp5hbkvv2m"]
+
+[ext_resource type="Script" path="res://scripts/weapons/Whip.gd" id="1_bxfa1"]
+[ext_resource type="Script" path="res://scripts/weapons/weapon_base.gd" id="2_2kj1o"]
+[ext_resource type="Texture2D" uid="uid://1uqk0rpsl3nr" path="res://sprites/whip_sprite.png" id="3_auhfe"]
+[ext_resource type="Script" path="res://scripts/utils/damage_applyer.gd" id="4_bolxf"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ifc2a"]
+atlas = ExtResource("3_auhfe")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_s47nx"]
+atlas = ExtResource("3_auhfe")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_g1uu8"]
+atlas = ExtResource("3_auhfe")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4yqo3"]
+atlas = ExtResource("3_auhfe")
+region = Rect2(48, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_hnihe"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ifc2a")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_s47nx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_g1uu8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4yqo3")
+}],
+"loop": false,
+"name": &"default",
+"speed": 10.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_t2x0k"]
+size = Vector2(19, 17)
+
+[node name="Whip" type="Node2D" node_paths=PackedStringArray("hitbox_ref", "damage_applyer_ref", "weapon_base_ref", "sprite_ref")]
+scale = Vector2(5, 5)
+script = ExtResource("1_bxfa1")
+hitbox_ref = NodePath("HitBox")
+damage_applyer_ref = NodePath("DamageApplyer")
+weapon_base_ref = NodePath("WeaponBase")
+sprite_ref = NodePath("Sprite")
+
+[node name="WeaponBase" type="Node" parent="."]
+script = ExtResource("2_2kj1o")
+attack_speed = 1.0
+attack_damage = 1.0
+attack_area = 1.0
+
+[node name="Sprite" type="AnimatedSprite2D" parent="."]
+position = Vector2(7.8, -2.2)
+sprite_frames = SubResource("SpriteFrames_hnihe")
+frame = 2
+frame_progress = 0.688568
+
+[node name="HitBox" type="Area2D" parent="."]
+position = Vector2(0, -2.2)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox"]
+position = Vector2(9, -2.38419e-07)
+shape = SubResource("RectangleShape2D_t2x0k")
+
+[node name="DamageApplyer" type="Node" parent="." node_paths=PackedStringArray("parent_ref")]
+script = ExtResource("4_bolxf")
+parent_ref = NodePath("..")

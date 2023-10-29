@@ -9,7 +9,7 @@
 radius = 8.0
 height = 32.0
 
-[node name="base_mob" type="Area2D" node_paths=PackedStringArray("mob_movement_ref", "health_ref", "damage_applyer_ref")]
+[node name="base_mob" type="Area2D" node_paths=PackedStringArray("mob_movement_ref", "health_ref", "damage_applyer_ref") groups=["enemies"]]
 script = ExtResource("1_w2lff")
 mob_movement_ref = NodePath("MobMovement")
 health_ref = NodePath("Health")
@@ -26,6 +26,5 @@ debug_color = Color(0.878431, 0.376471, 0.470588, 0.419608)
 [node name="Health" type="Node" parent="."]
 script = ExtResource("2_5ejsu")
 
-[node name="DamageApplyer" type="Node" parent="." node_paths=PackedStringArray("parent_ref")]
+[node name="DamageApplyer" type="Node" parent="."]
 script = ExtResource("3_2pchs")
-parent_ref = NodePath("")
