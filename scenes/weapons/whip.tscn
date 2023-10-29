@@ -50,7 +50,7 @@ script = ExtResource("1_bxfa1")
 hitbox_ref = NodePath("HitBox")
 damage_applyer_ref = NodePath("DamageApplyer")
 weapon_base_ref = NodePath("WeaponBase")
-sprite_ref = NodePath("Sprite")
+sprite_ref = NodePath("HitBox/Sprite")
 
 [node name="WeaponBase" type="Node" parent="."]
 script = ExtResource("2_2kj1o")
@@ -58,14 +58,16 @@ attack_speed = 1.0
 attack_damage = 1.0
 attack_area = 1.0
 
-[node name="Sprite" type="AnimatedSprite2D" parent="."]
-position = Vector2(7.8, -2.2)
+[node name="HitBox" type="Area2D" parent="."]
+position = Vector2(0, -2.2)
+scale = Vector2(1, 1)
+
+[node name="Sprite" type="AnimatedSprite2D" parent="HitBox"]
+position = Vector2(7.8, 0)
+scale = Vector2(1, 1)
 sprite_frames = SubResource("SpriteFrames_hnihe")
 frame = 2
 frame_progress = 0.688568
-
-[node name="HitBox" type="Area2D" parent="."]
-position = Vector2(0, -2.2)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox"]
 position = Vector2(9, -2.38419e-07)
