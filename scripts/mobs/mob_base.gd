@@ -25,4 +25,5 @@ func _ready():
 
 func _on_area2d_entered(other: Area2D):
 	damage_applyer_ref.apply_damage_to(other, damage)
+	mob_movement_ref.slowdown(other)
 

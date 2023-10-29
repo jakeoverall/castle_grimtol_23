@@ -15,9 +15,10 @@ mob_movement_ref = NodePath("MobMovement")
 health_ref = NodePath("Health")
 damage_applyer_ref = NodePath("DamageApplyer")
 
-[node name="MobMovement" type="Node" parent="." node_paths=PackedStringArray("mob_ref")]
+[node name="MobMovement" type="Node" parent="." node_paths=PackedStringArray("mob_ref", "slowdown_timer")]
 script = ExtResource("1_1k5dp")
 mob_ref = NodePath("..")
+slowdown_timer = NodePath("../SlowdownTimer")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CapsuleShape2D_vhvat")
@@ -28,3 +29,6 @@ script = ExtResource("2_5ejsu")
 
 [node name="DamageApplyer" type="Node" parent="."]
 script = ExtResource("3_2pchs")
+parent_ref = NodePath("")
+
+[node name="SlowdownTimer" type="Timer" parent="."]
