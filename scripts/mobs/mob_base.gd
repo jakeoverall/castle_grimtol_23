@@ -16,6 +16,9 @@ extends Area2D
 @export var death_particles_ref: GPUParticles2D
 @export var sprite_renderer_ref: AnimatedSprite2D
 
+var dead : bool = false
+
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	mob_movement_ref.speed = speed
@@ -23,6 +26,14 @@ func _ready():
 	health_ref.health = health
 	area_entered.connect(_on_area2d_entered)
 	health_ref.health_expired.connect(_on_health_expired)
+	sprite_renderer_ref.play()
+	death_particles_ref.emitting = false
+	death_particles_ref.one_shot = true
+
+func _process(_delta):
+	if dead:
+		play_death()
+
 
 func _on_area2d_entered(other: Area2D):
 	damage_applyer_ref.apply_damage_to(other, damage)
@@ -30,8 +41,19 @@ func _on_area2d_entered(other: Area2D):
 
 func _on_health_expired(_killed_by: Node):
 	# death_particles
+	dead = true
+	monitorable = false
+	monitoring = false
+	sprite_renderer_ref.stop()
+	death_particles_ref.emitting = true
+	mob_movement_ref.speed = 0
 	
-	sprite_renderer_ref.modulate.a = 0
+func play_death():
+	sprite_renderer_ref.modulate.a -= .01
+	if sprite_renderer_ref.modulate.a <= 0:
+		queue_free()
 	
-	pass
+	
+	
+	
 
