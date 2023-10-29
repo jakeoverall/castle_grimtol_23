@@ -14,7 +14,7 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta):
-	if target_ref != null:
+	if target_ref != null: 
 		mob_ref.position = mob_ref.position.move_toward(target_ref.position, delta * speed * (.60 if slowed else 1.0))
 
 func slowdown(other: Node2D):

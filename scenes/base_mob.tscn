@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://cedq72r0cfl3d"]
+[gd_scene load_steps=7 format=3 uid="uid://cedq72r0cfl3d"]
 
 [ext_resource type="Script" path="res://scripts/mobs/mob_movement.gd" id="1_1k5dp"]
 [ext_resource type="Script" path="res://scripts/mobs/mob_base.gd" id="1_w2lff"]
@@ -8,6 +8,8 @@
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_vhvat"]
 radius = 8.0
 height = 32.0
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_xnloo"]
 
 [node name="base_mob" type="Area2D" node_paths=PackedStringArray("mob_movement_ref", "health_ref", "damage_applyer_ref") groups=["enemies"]]
 script = ExtResource("1_w2lff")
@@ -32,3 +34,6 @@ script = ExtResource("3_2pchs")
 parent_ref = NodePath("")
 
 [node name="SlowdownTimer" type="Timer" parent="."]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_xnloo")
