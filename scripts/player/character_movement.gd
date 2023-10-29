@@ -6,6 +6,8 @@ class_name CharacterMovement
 
 @export var character_ref: Node2D
 
+
+
 @export_category("Inputs")
 @export var character_up: String = "character_up"
 @export var character_down: String = "character_down"
@@ -26,5 +28,9 @@ func _physics_process(delta):
 		direction.x -= 1
 
 	direction = direction.normalized()
-
+	if(direction.x < 0):
+		character_ref.scale.x = -1
+	if(direction.x > 0):
+		character_ref.scale.x = 1
+	
 	character_ref.position += direction * delta * speed
