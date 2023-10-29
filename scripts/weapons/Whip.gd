@@ -5,7 +5,6 @@ extends Node2D
 @export var weapon_base_ref: WeaponBase
 @export var sprite_ref: AnimatedSprite2D
 @export var damage : float = 1
-var direction : 
 
 # Called when the node enters the scene tree for the first time.
 func _ready():

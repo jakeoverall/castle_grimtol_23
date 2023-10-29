@@ -9,10 +9,6 @@
 [node name="player" parent="." instance=ExtResource("1_eh4l7")]
 
 [node name="Whip" parent="player" instance=ExtResource("2_pwql8")]
-hitbox_ref = null
-damage_applyer_ref = null
-weapon_base_ref = null
-sprite_ref = null
 
 [node name="base_mob" parent="." node_paths=PackedStringArray("target_ref") instance=ExtResource("2_s0j65")]
 position = Vector2(600, 168)
