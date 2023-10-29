@@ -81,7 +81,7 @@ parent_ref = NodePath("")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_xnloo")
-frame_progress = 0.0334393
+frame_progress = 0.0838062
 
 [node name="DeathParticles" type="GPUParticles2D" parent="."]
 amount = 15

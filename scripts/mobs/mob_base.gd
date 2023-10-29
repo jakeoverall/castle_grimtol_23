@@ -1,5 +1,7 @@
 extends Area2D
 
+class_name MobBase
+
 @export_category("Mob Config")
 @export var speed : float = 100
 @export var health : float = 1
@@ -15,6 +17,8 @@ extends Area2D
 @export var damage_applyer_ref: DamageApplyer
 @export var death_particles_ref: GPUParticles2D
 @export var sprite_renderer_ref: AnimatedSprite2D
+
+signal on_death()
 
 var dead : bool = false
 
@@ -47,6 +51,7 @@ func _on_health_expired(_killed_by: Node):
 	sprite_renderer_ref.stop()
 	death_particles_ref.emitting = true
 	mob_movement_ref.speed = 0
+	on_death.emit()
 	
 func play_death():
 	sprite_renderer_ref.modulate.a -= .01

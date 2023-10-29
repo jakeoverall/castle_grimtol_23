@@ -10,8 +10,3 @@ var player = {
 	level = 0
 }
 
-var mods = {
-	
-}
-
-
