@@ -1,12 +1,35 @@
-[gd_scene load_steps=5 format=3 uid="uid://ubol0eudhwft"]
+[gd_scene load_steps=9 format=3 uid="uid://ubol0eudhwft"]
 
 [ext_resource type="Script" path="res://scripts/player/character_movement.gd" id="1_6l11n"]
 [ext_resource type="Script" path="res://scripts/player/player_base.gd" id="1_n1iel"]
 [ext_resource type="Script" path="res://scripts/utils/health.gd" id="2_3d4no"]
+[ext_resource type="Texture2D" uid="uid://cqosckop7oaak" path="res://sprites/character_sprite.png" id="4_r3mh2"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_3kcve"]
 radius = 8.0
 height = 32.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ibrlu"]
+atlas = ExtResource("4_r3mh2")
+region = Rect2(0, 0, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ugadh"]
+atlas = ExtResource("4_r3mh2")
+region = Rect2(16, 0, 16, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_tcvno"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ibrlu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ugadh")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
 
 [node name="player" type="Area2D" node_paths=PackedStringArray("player_movement_ref", "health_ref") groups=["player"]]
 script = ExtResource("1_n1iel")
@@ -22,3 +45,7 @@ character_ref = NodePath("..")
 
 [node name="Health" type="Node" parent="." groups=["player"]]
 script = ExtResource("2_3d4no")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_tcvno")
+frame_progress = 0.705073
